@@ -45,4 +45,17 @@ class Seller {
       'storeName': storeName,
     };
   }
+
+  Map<String, dynamic> toJsonWithPassword(String password) {
+    return {
+      '_id': id,
+      'name': name,
+      'email': email,
+      "password": password,
+      'phoneNo': phoneNo,
+      'CNIC': cnic,
+      'residentialAdress': residentialAddress,
+      'storeName': storeName,
+    };
+  }
 }

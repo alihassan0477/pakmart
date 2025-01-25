@@ -5,6 +5,8 @@ import 'package:pakmart/Model/SellerModel.dart';
 import 'package:pakmart/constant/buttonStyle.dart';
 import 'package:pakmart/constant/textStyles.dart';
 import 'package:pakmart/extension/route_extension.dart';
+import 'package:pakmart/screens/Chats/IndividualChat.dart';
+import 'package:pakmart/screens/RFQ/RFQScreen.dart';
 import 'package:pakmart/screens/Reviews/ReviewsScreen.dart';
 import 'package:pakmart/service/Call.dart';
 
@@ -36,7 +38,11 @@ class ProductDetailsScreen extends StatelessWidget {
                 width: 10,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.navigateTo(RFQScreen(
+                    isBackButtonEnable: true,
+                  ));
+                },
                 style: rectanuglarButton.copyWith(
                   backgroundColor: WidgetStateProperty.all(Colors.green),
                   foregroundColor: WidgetStateProperty.all(Colors.white),
@@ -47,7 +53,9 @@ class ProductDetailsScreen extends StatelessWidget {
                 width: 10,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.navigateTo(const IndividualChatScreen());
+                },
                 style: rectanuglarButton.copyWith(
                   backgroundColor: WidgetStateProperty.all(Colors.green),
                   foregroundColor: WidgetStateProperty.all(Colors.white),

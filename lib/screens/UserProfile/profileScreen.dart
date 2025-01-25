@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pakmart/SellerCentral/signup_screen.dart';
 import 'package:pakmart/api/UserApi.dart';
 import 'package:pakmart/constant/screensize.dart';
 import 'package:pakmart/constant/textStyles.dart';
@@ -86,7 +87,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 contentPadding: const EdgeInsets.all(6),
                 leading: const Icon(Icons.money),
                 title: const Text("Become a seller"),
-                onTap: () {},
+                onTap: () {
+                  context.navigateTo(const SellerSignup());
+                },
               ),
               const Divider(),
               ListTile(

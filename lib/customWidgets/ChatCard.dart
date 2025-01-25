@@ -12,7 +12,7 @@ class ChatCard extends StatelessWidget {
             radius: 30,
           ),
           title: Text(
-            "Shahzeel",
+            "Ali Hassan",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           subtitle: Row(
@@ -22,7 +22,7 @@ class ChatCard extends StatelessWidget {
                 width: 5,
               ),
               Text(
-                "hi my name is Shahzeel",
+                "hi my name is ALi",
                 style: TextStyle(fontSize: 13),
               ),
             ],

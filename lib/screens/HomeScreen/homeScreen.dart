@@ -4,7 +4,6 @@ import 'package:pakmart/Model/ProductModel.dart';
 import 'package:pakmart/api/ProductApi.dart';
 import 'package:pakmart/constant/screensize.dart';
 import 'package:pakmart/extension/route_extension.dart';
-
 import 'package:pakmart/screens/HomeScreen/widgets/ProductsHorizontalListView.dart';
 import 'package:pakmart/screens/HomeScreen/widgets/categories.dart';
 import 'package:pakmart/screens/Products/ProductsScreen.dart';

@@ -30,13 +30,13 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
               Icon(Icons.arrow_back),
               SizedBox(width: 5),
               CircleAvatar(
-                child: Text("SH"),
+                child: Text("ALI"),
               ),
             ],
           ),
         ),
         title: const Text(
-          "Shahzeel",
+          "Ali Hassan",
           style: TextStyle(
             fontSize: 19,
             fontWeight: FontWeight.bold,

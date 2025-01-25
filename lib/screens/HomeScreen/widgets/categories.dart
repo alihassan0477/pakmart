@@ -48,7 +48,7 @@ class Categories extends StatelessWidget {
                       context.navigateTo(const CategoryScreen());
                     } else if (filteredItems[index].name ==
                         "Request \n for Quotation") {
-                      context.navigateTo(const RFQScreen());
+                      context.navigateTo(RFQScreen());
                     } else if (filteredItems[index].name == "Machinery") {
                       context.navigateTo(
                           const ProductsScreen(category: "Machinery"));

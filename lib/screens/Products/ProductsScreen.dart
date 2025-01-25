@@ -3,6 +3,9 @@ import 'package:pakmart/Model/ProductModel.dart';
 import 'package:pakmart/api/ProductApi.dart';
 import 'package:pakmart/constant/buttonStyle.dart';
 import 'package:pakmart/constant/screensize.dart';
+import 'package:pakmart/extension/route_extension.dart';
+import 'package:pakmart/screens/RFQ/RFQScreen.dart';
+import 'package:pakmart/service/Call.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key, required this.category});
@@ -67,13 +70,21 @@ class ProductsScreen extends StatelessWidget {
                           Row(
                             children: [
                               OutlinedButton(
-                                onPressed: () {},
+                                onPressed: () async {
+                                  await Call(
+                                          phoneNumber: product.seller.phoneNo)
+                                      .makeCall();
+                                },
                                 style: outlinedButton,
                                 child: const Text("Call"),
                               ),
                               const SizedBox(width: 10),
                               ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  context.navigateTo(RFQScreen(
+                                    isBackButtonEnable: true,
+                                  ));
+                                },
                                 style: rectanuglarButton.copyWith(
                                   backgroundColor:
                                       WidgetStateProperty.all(Colors.green),

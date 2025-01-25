@@ -7,7 +7,9 @@ import 'package:pakmart/constant/textStyles.dart';
 import 'package:pakmart/service/SnackBar.dart';
 
 class RFQScreen extends StatefulWidget {
-  const RFQScreen({super.key});
+  RFQScreen({super.key, this.isBackButtonEnable = false});
+
+  bool isBackButtonEnable;
 
   @override
   State<RFQScreen> createState() => _MyFormState();
@@ -38,7 +40,7 @@ class _MyFormState extends State<RFQScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: widget.isBackButtonEnable ? true : false,
         centerTitle: true,
         title: const Text('RFQ'),
       ),
