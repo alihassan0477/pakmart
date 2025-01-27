@@ -39,8 +39,13 @@ class _SearchScreenState extends State<SearchScreen> {
     if (debounce?.isActive ?? false) debounce!.cancel();
 
     debounce = Timer(const Duration(milliseconds: 300), () {
+      print(value);
       search(value);
     });
+
+    // print(value);
+
+    // search(value);
   }
 
   void search(String value) {

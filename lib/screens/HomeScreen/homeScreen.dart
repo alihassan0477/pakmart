@@ -21,9 +21,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<String> productImages = [
     "https://img.freepik.com/premium-photo/apple-macbook-space-grey-realistic-mockup-transparent-png-digital-design-visualization_209190-137923.jpg",
     "https://e7.pngegg.com/pngimages/68/524/png-clipart-red-wireless-headphones-wearing-headphones.png",
-    "https://images.unsplash.com/photo-1599402490273-62a274f9e33d",
-    "https://images.unsplash.com/photo-1580258384101-27b7a0d576aa",
-    "https://images.unsplash.com/photo-1587734902653-34e5a8cf3770",
   ];
 
   final List<String> categories = ["Headphones", "Camera"];

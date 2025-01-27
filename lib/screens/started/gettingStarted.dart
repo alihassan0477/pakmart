@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pakmart/SellerCentral/signup_screen.dart';
 import 'package:pakmart/constant/screensize.dart';
 import 'package:pakmart/extension/route_extension.dart';
 import 'package:pakmart/screens/BottomNavigation.dart';
@@ -42,6 +43,19 @@ class GettingStartedScreen extends StatelessWidget {
                   },
                   text: "Create Account",
                 ),
+              ),
+              Button(
+                KEY: "Seller",
+                onPressed: () {
+                  context.navigateTo(const SellerSignup());
+
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => const LoginScreen(),
+                  //     ));
+                },
+                text: "Register as a Seller",
               ),
               Button(
                 KEY: "Guest",
