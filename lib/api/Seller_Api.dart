@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:pakmart/Model/SellerModel.dart';
 import 'package:pakmart/constant/baseUrl.dart';
 import 'package:http/http.dart' as http;
+import 'package:pakmart/service/session_manager/session_controller.dart';
 
 class SellerApi {
   Future<int> signUp(Seller seller, String password) async {
@@ -47,6 +48,9 @@ class SellerApi {
 
       switch (response.statusCode) {
         case 200:
+          final res = jsonDecode(response.body);
+          await SellerSessionController()
+              .saveSellerPrefs(res['sellerId'], res['token']);
           return "Login Sucessful";
 
         case 400:

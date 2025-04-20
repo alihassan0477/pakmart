@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({super.key});
+class ReceiveLeadsScreen extends StatelessWidget {
+  const ReceiveLeadsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Seller Dashboard"),
+        title: const Text("Receive Leads"),
       ),
     );
   }

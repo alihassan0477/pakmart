@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pakmart/Model/SellerModel.dart';
-import 'package:pakmart/SellerCentral/login_seller_screen.dart';
+import 'package:pakmart/SellerCentral/views/login/login_seller_screen.dart';
 import 'package:pakmart/api/Seller_Api.dart';
 import 'package:pakmart/constant/buttonStyle.dart';
 import 'package:pakmart/extension/route_extension.dart';

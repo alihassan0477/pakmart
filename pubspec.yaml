@@ -42,6 +42,12 @@ dependencies:
   url_launcher: ^6.3.1
   socket_io_client: ^3.0.2
   shared_preferences: ^2.3.5
+  equatable: ^2.0.7
+  bloc: ^9.0.0
+  flutter_bloc: ^9.1.0
+  image_picker: ^1.1.2
+  get_it: ^8.0.3
+  cloudinary_public: ^0.23.1
 
 dev_dependencies:
   flutter_test:

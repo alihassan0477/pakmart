@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pakmart/SellerCentral/signup_screen.dart';
+import 'package:pakmart/SellerCentral/views/signup/signup_screen.dart';
 import 'package:pakmart/api/UserApi.dart';
 import 'package:pakmart/constant/screensize.dart';
 import 'package:pakmart/constant/textStyles.dart';

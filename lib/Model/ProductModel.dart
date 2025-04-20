@@ -26,21 +26,22 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-        id: json['_id'] as String,
-        name: json['name'] as String,
-        category: json['category']['name'] as String,
-        price: json['price'] as int,
-        stock: json['stock'] as int,
-        description: json['description'] as String,
+        id: json['_id'] ?? "",
+        name: json['name'] ?? "",
+        category: json['category']['name'] ?? "",
+        price: json['price'] ?? 0,
+        stock: json['stock'] ?? 0,
+        description: json['description'] ?? "",
         seller: Seller.fromJson(json['seller']),
         images: List<String>.from(
           json['images'] ?? [],
         ),
         specifications: (json['specifications'] as List<dynamic>)
-            .map(
-              (spec) => Specifications.fromJson(spec),
-            )
-            .toList());
+                .map(
+                  (spec) => Specifications.fromJson(spec),
+                )
+                .toList() ??
+            []);
   }
 
   // Method to convert Product to JSON
