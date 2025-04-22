@@ -1,7 +1,11 @@
 import 'package:pakmart/service/session_manager/session_controller.dart';
 
 class AppUrl {
-  static const String baseApi = "http://localhost:2000";
+  static const String baseApi = "http://$ANDROID_EMULATOR_IP:2000";
+
+  static const String LOCAL_HOST = "localhost";
+  static const String MAC_IP = "192.168.18.91";
+  static const String ANDROID_EMULATOR_IP = "10.0.2.2";
 
   static const FETCH_CATEGORIES = "$baseApi/api/get-categories";
 

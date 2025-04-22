@@ -14,6 +14,8 @@ class ProductApi {
         final List<dynamic> productJson =
             json.decode(response.body)['products'];
 
+        print(productJson);
+
         // productJson.map((json) => Product(name: json['name'], category: category, price: price, stock: stock, description: description, seller: seller, images: images, specifications: specifications),)
 
         return productJson.map((json) => Product.fromJson(json)).toList();

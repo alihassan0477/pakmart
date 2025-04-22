@@ -17,6 +17,7 @@ class ProductDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(product.images);
     return Scaffold(
       appBar: AppBar(),
       bottomNavigationBar: Container(
@@ -58,7 +59,8 @@ class ProductDetailsScreen extends StatelessWidget {
                 },
                 style: rectanuglarButton.copyWith(
                   backgroundColor: WidgetStateProperty.all(Colors.green),
-                  foregroundColor: WidgetStateProperty.all(Colors.white),
+                  foregroundColor: WidgetStateProperty.all(
+                      const Color.fromARGB(255, 100, 22, 22)),
                 ),
                 child: const Text("chat"),
               )
@@ -148,63 +150,63 @@ class ProductInformation extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               // Uncomment the Table if needed
-              Table(
-                border: TableBorder.all(),
-                columnWidths: const {
-                  0: FlexColumnWidth(1),
-                  1: FlexColumnWidth(1),
-                },
-                children: [
-                  TableRow(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Text(product.specifications[0].key),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Text(product.specifications[0].value),
-                      ),
-                    ],
-                  ),
-                  TableRow(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Text(product.specifications[1].key),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Text(product.specifications[1].value),
-                      ),
-                    ],
-                  ),
-                  TableRow(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Text(product.specifications[2].key),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Text(product.specifications[2].value),
-                      ),
-                    ],
-                  ),
-                  TableRow(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Text(product.specifications[3].key),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Text(product.specifications[3].value),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+              // Table(
+              //   border: TableBorder.all(),
+              //   columnWidths: const {
+              //     0: FlexColumnWidth(1),
+              //     1: FlexColumnWidth(1),
+              //   },
+              //   children: [
+              //     TableRow(
+              //       children: [
+              //         Padding(
+              //           padding: const EdgeInsets.all(8),
+              //           child: Text(product.specifications[0].key),
+              //         ),
+              //         Padding(
+              //           padding: const EdgeInsets.all(8),
+              //           child: Text(product.specifications[0].value),
+              //         ),
+              //       ],
+              //     ),
+              //     TableRow(
+              //       children: [
+              //         Padding(
+              //           padding: const EdgeInsets.all(8),
+              //           child: Text(product.specifications[1].key ?? ""),
+              //         ),
+              //         Padding(
+              //           padding: const EdgeInsets.all(8),
+              //           child: Text(product.specifications[1].value ?? ""),
+              //         ),
+              //       ],
+              //     ),
+              //     TableRow(
+              //       children: [
+              //         Padding(
+              //           padding: const EdgeInsets.all(8),
+              //           child: Text(product.specifications[2].key ?? ""),
+              //         ),
+              //         Padding(
+              //           padding: const EdgeInsets.all(8),
+              //           child: Text(product.specifications[2].value ?? ""),
+              //         ),
+              //       ],
+              //     ),
+              //     TableRow(
+              //       children: [
+              //         Padding(
+              //           padding: const EdgeInsets.all(8),
+              //           child: Text(product.specifications[3].key ?? ""),
+              //         ),
+              //         Padding(
+              //           padding: const EdgeInsets.all(8),
+              //           child: Text(product.specifications[3].value ?? ""),
+              //         ),
+              //       ],
+              //     ),
+              //   ],
+              // ),
 
               const Divider(),
 

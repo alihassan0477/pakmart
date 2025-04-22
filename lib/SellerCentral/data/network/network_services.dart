@@ -39,9 +39,8 @@ class NetworkServicesApi implements BaseApiServices {
     };
 
     try {
-      final response = await http
-          .post(Uri.parse(url), headers: headers, body: jsonEncode(data))
-          .timeout(const Duration(seconds: 50));
+      final response = await http.post(Uri.parse(url),
+          headers: headers, body: jsonEncode(data));
 
       jsonResponse = returnResponse(response);
     } on SocketException {
