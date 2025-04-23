@@ -1,11 +1,14 @@
 import 'package:pakmart/service/session_manager/session_controller.dart';
 
 class AppUrl {
-  static const String baseApi = "http://$ANDROID_EMULATOR_IP:2000";
-
+  static const String baseApi = NGROK;
+  static const PORT = "2000";
+  static const String NGROK =
+      "https://8707-2400-adc1-136-6300-4ce4-acd0-d726-8939.ngrok-free.app";
   static const String LOCAL_HOST = "localhost";
   static const String MAC_IP = "192.168.18.91";
   static const String ANDROID_EMULATOR_IP = "10.0.2.2";
+  static const String TEMP_IP = "172.16.182.32";
 
   static const FETCH_CATEGORIES = "$baseApi/api/get-categories";
 
