@@ -47,6 +47,8 @@ class ImagePickerService {
               resourceType: CloudinaryResourceType.Image));
 
       uploadedImagesUrl.add(response.url);
+
+      print(uploadedImagesUrl[0]);
     }
 
     return uploadedImagesUrl;

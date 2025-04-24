@@ -1,7 +1,7 @@
 import 'package:pakmart/service/session_manager/session_controller.dart';
 
 class AppUrl {
-  static const String baseApi = "http://$LOCAL_HOST:$PORT";
+  static const String baseApi = "http://$ANDROID_EMULATOR_IP:$PORT";
   static const PORT = "2000";
   static const String NGROK =
       "https://8707-2400-adc1-136-6300-4ce4-acd0-d726-8939.ngrok-free.app";
