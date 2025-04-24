@@ -2,7 +2,7 @@ import 'package:pakmart/SellerCentral/data/app_url/app_url.dart';
 
 const String baseUrl = portUrl;
 
-const portUrl = AppUrl.NGROK;
+const portUrl = AppUrl.baseApi;
 
 // http://10.0.2.2:2000
 
