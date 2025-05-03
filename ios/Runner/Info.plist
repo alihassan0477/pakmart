@@ -45,5 +45,12 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<!-- Added Privacy Permission Keys -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Pakmart needs access to your photo library to allow you to select images for your profile or listings.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Pakmart needs access to your camera to capture photos or videos for your profile or listings.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Pakmart needs access to your microphone to record audio for videos in your listings.</string>
 </dict>
 </plist>
