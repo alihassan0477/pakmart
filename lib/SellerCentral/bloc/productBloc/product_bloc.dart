@@ -6,6 +6,7 @@ import 'package:pakmart/SellerCentral/bloc/productBloc/product_state.dart';
 import 'package:pakmart/SellerCentral/repository/product/product_repository.dart';
 import 'package:pakmart/SellerCentral/utils/enums.dart';
 import 'package:pakmart/screens/HomeScreen/widgets/categories.dart';
+import 'package:pakmart/service/session_manager/session_controller.dart';
 
 part 'product_event.dart';
 
@@ -17,30 +18,36 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   }
 
   void _fetchSellerProductsEvent(
-      FetchSellerProductsEvent event, Emitter<ProductState> emit) async {
+    FetchSellerProductsEvent event,
+    Emitter<ProductState> emit,
+  ) async {
     emit(state.copyWith(getApiStatus: GetApiStatus.loading));
 
-    await productRepository.fetchSellerProducts().then(
-      (List<Product> products) {
-        emit(
-          state.copyWith(
+    await SellerSessionController().getSellerPrefs();
+
+    await productRepository
+        .fetchSellerProducts()
+        .then((List<Product> products) {
+          emit(
+            state.copyWith(
               listSellerProducts: products,
-              getApiStatus: GetApiStatus.completed),
-        );
-      },
-    ).onError(
-      (error, stackTrace) {
-        emit(state.copyWith(getApiStatus: GetApiStatus.error));
-      },
-    );
+              getApiStatus: GetApiStatus.completed,
+            ),
+          );
+        })
+        .onError((error, stackTrace) {
+          emit(state.copyWith(getApiStatus: GetApiStatus.error));
+        });
   }
 
   void _deleteSellerProduct(
-      DeleteSellerProductEvent event, Emitter<ProductState> emit) async {
+    DeleteSellerProductEvent event,
+    Emitter<ProductState> emit,
+  ) async {
     emit(state.copyWith(deleteApiStatus: DeleteApiStatus.inital));
 
-    await productRepository.deleteSellerProductById(event.productId).then(
-          (value) {},
-        );
+    await productRepository
+        .deleteSellerProductById(event.productId)
+        .then((value) {});
   }
 }

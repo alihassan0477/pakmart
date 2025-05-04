@@ -27,9 +27,7 @@ class _ProductSellerScreenState extends State<ProductSellerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Products'),
-      ),
+      appBar: AppBar(title: const Text('Products')),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           Utlis.showButtomSheet(context, const BottomSheetContent());
@@ -39,18 +37,12 @@ class _ProductSellerScreenState extends State<ProductSellerScreen> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.0),
         ),
-        child: const Icon(
-          Icons.add,
-          size: 30.0,
-          color: Colors.white,
-        ),
+        child: const Icon(Icons.add, size: 30.0, color: Colors.white),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: BlocProvider(
         create: (context) => _productBloc..add(FetchSellerProductsEvent()),
-        child: const Center(
-          child: FetchProducts(),
-        ),
+        child: const Center(child: FetchProducts()),
       ),
     );
   }

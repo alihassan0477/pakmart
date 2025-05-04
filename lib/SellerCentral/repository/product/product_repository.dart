@@ -11,8 +11,14 @@ abstract class ProductRepository {
   Future<List<Category>> fetchCategories();
   Future<List<Product>> fetchSellerProducts();
   Future<void> deleteSellerProductById(String productId);
-  Future<void> createProduct(String name, String category, int price, int stock,
-      String description, List<String> images);
+  Future<void> createProduct(
+    String name,
+    String category,
+    int price,
+    int stock,
+    String description,
+    List<String> images,
+  );
 }
 
 class HttpProductRepo implements ProductRepository {
@@ -25,24 +31,19 @@ class HttpProductRepo implements ProductRepository {
     final List jsonCategories = response['categories'];
 
     return jsonCategories
-        .map<Category>(
-          (jsonObj) => Category.fromJson(jsonObj),
-        )
+        .map<Category>((jsonObj) => Category.fromJson(jsonObj))
         .toList();
   }
 
   @override
   Future<List<Product>> fetchSellerProducts() async {
     final sellerId = SellerSessionController().seller_id;
+    print("Seller ID: $sellerId");
     final url = AppUrl.getSellerIdUrl(sellerId);
 
     final List response = await networkServicesApi.getApi(url);
 
-    return response
-        .map(
-          (jsonObj) => Product.fromJson(jsonObj),
-        )
-        .toList();
+    return response.map((jsonObj) => Product.fromJson(jsonObj)).toList();
   }
 
   @override
@@ -54,8 +55,14 @@ class HttpProductRepo implements ProductRepository {
   }
 
   @override
-  Future<dynamic> createProduct(String name, String category, int price,
-      int stock, String description, List<String> images) async {
+  Future<dynamic> createProduct(
+    String name,
+    String category,
+    int price,
+    int stock,
+    String description,
+    List<String> images,
+  ) async {
     final sellerId = SellerSessionController().seller_id;
     const url = AppUrl.CREATE_PRODUCT;
     final data = {
@@ -67,10 +74,7 @@ class HttpProductRepo implements ProductRepository {
       'seller': sellerId, // Use seller ID instead of the entire seller object
       'images': images,
       "specifications": [
-        {
-          "key": "Color",
-          "value": "Red",
-        }
+        {"key": "Color", "value": "Red"},
       ],
     };
 
