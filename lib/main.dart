@@ -7,9 +7,7 @@ import 'package:pakmart/screens/started/gettingStarted.dart';
 GetIt getIt = GetIt.instance;
 
 void setup() {
-  getIt.registerLazySingleton<ProductRepository>(
-    () => HttpProductRepo(),
-  );
+  getIt.registerLazySingleton<ProductRepository>(() => HttpProductRepo());
 }
 
 void main() {
@@ -24,9 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        useMaterial3: true,
-      ),
+      theme: ThemeData(useMaterial3: true),
       home: const SplashScreen(),
     );
   }

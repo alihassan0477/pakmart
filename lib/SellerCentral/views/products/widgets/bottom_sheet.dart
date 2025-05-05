@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pakmart/SellerCentral/bloc/bottomsheet/bottom_sheet_bloc.dart';
-import 'package:pakmart/SellerCentral/bloc/bottomsheet/bottom_sheet_events.dart';
-import 'package:pakmart/SellerCentral/config/components/rounded_elevated_button.dart';
 import 'package:pakmart/SellerCentral/views/products/widgets/category_dropdown_widget.dart';
 import 'package:pakmart/SellerCentral/views/products/widgets/create_product_widget.dart';
 import 'package:pakmart/SellerCentral/views/products/widgets/price_input_widget.dart';
