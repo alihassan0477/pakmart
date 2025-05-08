@@ -44,10 +44,22 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     DeleteSellerProductEvent event,
     Emitter<ProductState> emit,
   ) async {
-    emit(state.copyWith(deleteApiStatus: DeleteApiStatus.inital));
+    emit(state.copyWith(deleteApiStatus: DeleteApiStatus.deleting));
+
+    await Future.delayed(const Duration(seconds: 2));
 
     await productRepository
         .deleteSellerProductById(event.productId)
-        .then((value) {});
+        .then((response) {
+          if (response == "Product deleted successfully") {
+            emit(state.copyWith(deleteApiStatus: DeleteApiStatus.successful));
+          } else {
+            emit(state.copyWith(deleteApiStatus: DeleteApiStatus.error));
+          }
+        })
+        .onError((error, stackTrace) {
+          emit(state.copyWith(deleteApiStatus: DeleteApiStatus.error));
+        })
+        .whenComplete(() => add(FetchSellerProductsEvent()));
   }
 }

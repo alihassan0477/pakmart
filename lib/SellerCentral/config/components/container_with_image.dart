@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:pakmart/SellerCentral/config/components/rounded_elevated_button.dart';
 
 class ContainerWithImage extends StatelessWidget {
-  const ContainerWithImage(
-      {super.key,
-      required this.title,
-      required this.image_url,
-      this.onPressed});
+  const ContainerWithImage({
+    super.key,
+    required this.title,
+    required this.image_url,
+    this.onPressed,
+    required this.ondeletePressed,
+  });
 
   final String title;
   final String image_url;
   final VoidCallback? onPressed;
+  final VoidCallback? ondeletePressed;
 
   @override
   Widget build(BuildContext context) {
@@ -21,18 +24,19 @@ class ContainerWithImage extends StatelessWidget {
         width: 300, // Box width (adjust as needed)
         height: 200, // Box height (adjust as needed)
         decoration: BoxDecoration(
-            borderRadius:
-                BorderRadius.circular(10), // Rounded corners (optional)
-            // Background color of the box
-            border: Border.all(color: Colors.green)),
+          borderRadius: BorderRadius.circular(10), // Rounded corners (optional)
+          // Background color of the box
+          border: Border.all(color: Colors.green),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Product Image
             Expanded(
               child: ClipRRect(
-                borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(10)),
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(10),
+                ),
                 child: Image.network(
                   image_url, // Replace with actual image URL
                   height: 150, // Image height
@@ -54,10 +58,7 @@ class ContainerWithImage extends StatelessWidget {
               ),
             ),
 
-            RoundedElevatedButton(
-              text: "Delete",
-              onPressed: () {},
-            )
+            RoundedElevatedButton(text: "Delete", onPressed: ondeletePressed!),
           ],
         ),
       ),

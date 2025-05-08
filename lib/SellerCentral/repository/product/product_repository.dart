@@ -10,7 +10,7 @@ import '../../../Model/CategoryModel.dart';
 abstract class ProductRepository {
   Future<List<Category>> fetchCategories();
   Future<List<Product>> fetchSellerProducts();
-  Future<void> deleteSellerProductById(String productId);
+  Future<String> deleteSellerProductById(String productId);
   Future<void> createProduct(
     String name,
     String category,
@@ -47,11 +47,13 @@ class HttpProductRepo implements ProductRepository {
   }
 
   @override
-  Future<void> deleteSellerProductById(String productId) async {
+  Future<String> deleteSellerProductById(String productId) async {
     final sellerId = SellerSessionController().seller_id;
     final url = AppUrl.productDeleteUrl(productId, sellerId);
 
     final response = await networkServicesApi.deleteApi(url);
+
+    return response['message'];
   }
 
   @override

@@ -19,6 +19,6 @@ class AppUrl {
   }
 
   static String productDeleteUrl(String productId, String sellerId) {
-    return "$baseApi/api/product/676df47ff2bde30114de4bfb?sellerId=$sellerId";
+    return "$baseApi/api/product/$productId?sellerId=$sellerId";
   }
 }
