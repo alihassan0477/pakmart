@@ -21,4 +21,8 @@ class AppUrl {
   static String productDeleteUrl(String productId, String sellerId) {
     return "$baseApi/api/product/$productId?sellerId=$sellerId";
   }
+
+  static String getTotalReceivedLeadsURL(String sellerId) {
+    return "$baseApi/get-total-rfqs/$sellerId";
+  }
 }

@@ -1,12 +1,13 @@
 class RFQ {
-  RFQ(
-      {required this.title,
-      required this.Location,
-      required this.customTitle,
-      required this.customerId,
-      required this.productRequired,
-      required this.deliveryTime,
-      required this.quantity});
+  RFQ({
+    required this.title,
+    required this.Location,
+    required this.customTitle,
+    required this.customerId,
+    required this.productRequired,
+    required this.deliveryTime,
+    required this.quantity,
+  });
 
   String title;
   String customTitle;
@@ -16,6 +17,18 @@ class RFQ {
   String Location;
   String customerId;
 
+  factory RFQ.fromJson(Map<String, dynamic> json) {
+    return RFQ(
+      title: json['title'] ?? '',
+      customTitle: json['custom_title'] ?? '',
+      deliveryTime: json['deliveryTime'] ?? '',
+      productRequired: json['productname'] ?? '',
+      quantity: json['quantity'] ?? 0,
+      Location: json['Location'] ?? '',
+      customerId: json['customer_id'] ?? '',
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {
       "title": title,
@@ -24,7 +37,7 @@ class RFQ {
       "productname": productRequired,
       "quantity": quantity,
       "Location": Location,
-      "customer_id": customerId
+      "customer_id": customerId,
     };
   }
 }
