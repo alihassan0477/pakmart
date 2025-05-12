@@ -1,7 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:pakmart/Model/RFQModel.dart';
+import 'dart:ffi';
 
-// LeadDetailsWidget to show full RFQ details cleanly
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pakmart/Model/RFQModel.dart';
+import 'package:pakmart/SellerCentral/bloc/ReceivedLeads/bloc/receive_leads_bloc.dart';
+import 'package:pakmart/SellerCentral/bloc/ReceivedLeads/bloc/receive_leads_state.dart';
+import 'package:pakmart/SellerCentral/config/components/status_button.dart';
+import 'package:pakmart/SellerCentral/views/receive_leads/widgets/status_button_widget.dart';
+
 class LeadDetailsWidget extends StatelessWidget {
   final RFQ lead;
   const LeadDetailsWidget({required this.lead, super.key});
@@ -11,11 +17,9 @@ class LeadDetailsWidget extends StatelessWidget {
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.all(16),
-
-        height: MediaQuery.of(context).size.height * 0.5,
+        height: MediaQuery.of(context).size.height * 0.7, // increased height
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
           children: [
             Center(
               child: Container(
@@ -35,6 +39,7 @@ class LeadDetailsWidget extends StatelessWidget {
               ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
+            _buildDetailRow('_id', lead.rfqId ?? ""),
             _buildDetailRow('Title', lead.title),
             _buildDetailRow('Custom Title', lead.customTitle),
             _buildDetailRow('Product Required', lead.productRequired),
@@ -42,6 +47,10 @@ class LeadDetailsWidget extends StatelessWidget {
             _buildDetailRow('Delivery Time', lead.deliveryTime),
             _buildDetailRow('Location', lead.Location),
             _buildDetailRow('Customer ID', lead.customerId),
+
+            const Spacer(), // push buttons to bottom
+
+            StatusButtons(rfqId: lead.rfqId ?? ""),
           ],
         ),
       ),

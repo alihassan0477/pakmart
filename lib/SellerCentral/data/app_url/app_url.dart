@@ -25,4 +25,8 @@ class AppUrl {
   static String getTotalReceivedLeadsURL(String sellerId) {
     return "$baseApi/get-total-rfqs/$sellerId";
   }
+
+  static String updateRfqStatusUrl(String rfqId) {
+    return "$baseApi/update-rfq-status/$rfqId";
+  }
 }

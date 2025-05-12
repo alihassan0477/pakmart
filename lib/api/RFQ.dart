@@ -22,22 +22,25 @@ class RFQApi {
     final int? convertquantity = int.tryParse(quantity);
 
     final rfq = RFQ(
-        title: title,
-        Location: Location,
-        customTitle: customTitle,
-        customerId: customerId,
-        productRequired: productRequired,
-        deliveryTime: deliveryTime,
-        quantity: convertquantity!);
+      title: title,
+      Location: Location,
+      customTitle: customTitle,
+      customerId: customerId,
+      productRequired: productRequired,
+      deliveryTime: deliveryTime,
+      quantity: convertquantity!,
+    );
 
     try {
       final requestBody = rfq.toJson();
 
-      final response = await http.post(url,
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: jsonEncode(requestBody));
+      final response = await http.post(
+        url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(requestBody),
+      );
 
       return response.statusCode;
     } catch (error) {

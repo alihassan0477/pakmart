@@ -11,8 +11,9 @@ class NetworkServicesApi implements BaseApiServices {
   Future<dynamic> getApi(String url) async {
     dynamic jsonResponse;
     try {
-      final response =
-          await http.get(Uri.parse(url)).timeout(const Duration(seconds: 50));
+      final response = await http
+          .get(Uri.parse(url))
+          .timeout(const Duration(seconds: 50));
 
       jsonResponse = returnResponse(response);
     } on SocketException {
@@ -39,8 +40,11 @@ class NetworkServicesApi implements BaseApiServices {
     };
 
     try {
-      final response = await http.post(Uri.parse(url),
-          headers: headers, body: jsonEncode(data));
+      final response = await http.post(
+        Uri.parse(url),
+        headers: headers,
+        body: jsonEncode(data),
+      );
 
       jsonResponse = returnResponse(response);
     } on SocketException {
@@ -69,6 +73,32 @@ class NetworkServicesApi implements BaseApiServices {
 
     return jsonResponse;
   }
+
+  @override
+  Future<dynamic> updateApi(String url, dynamic data) async {
+    dynamic jsonResponse;
+
+    final headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    };
+
+    try {
+      final response = await http.put(
+        Uri.parse(url),
+        headers: headers,
+        body: jsonEncode(data),
+      );
+
+      jsonResponse = returnResponse(response);
+    } on SocketException {
+      throw NoInternetException("");
+    } on TimeoutException {
+      throw FetchDataException("Time out try again");
+    }
+
+    return jsonResponse;
+  }
 }
 
 dynamic returnResponse(http.Response response) {
@@ -86,7 +116,8 @@ dynamic returnResponse(http.Response response) {
 
     case 500:
       throw FetchDataException(
-          "Error comunicating with server${response.statusCode}");
+        "Error comunicating with server${response.statusCode}",
+      );
 
     default:
   }

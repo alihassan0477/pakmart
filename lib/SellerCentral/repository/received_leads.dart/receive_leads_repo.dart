@@ -5,6 +5,7 @@ import 'package:pakmart/service/session_manager/session_controller.dart';
 
 abstract class ReceiveLeadsRepository {
   Future<List<RFQ>> fetchReceivedLeads();
+  Future<String> updateLeadStatus(String rfqId, String status);
 }
 
 class ReceiveLeadsHttpRepository implements ReceiveLeadsRepository {
@@ -21,5 +22,16 @@ class ReceiveLeadsHttpRepository implements ReceiveLeadsRepository {
         .map<RFQ>((jsonObj) => RFQ.fromJson(jsonObj))
         .toList()
         .cast<RFQ>();
+  }
+
+  @override
+  Future<String> updateLeadStatus(String rfqId, String status) async {
+    final url = AppUrl.updateRfqStatusUrl(rfqId);
+
+    final response = await networkServicesApi.updateApi(url, {
+      'status': status,
+    });
+
+    return response['message'];
   }
 }

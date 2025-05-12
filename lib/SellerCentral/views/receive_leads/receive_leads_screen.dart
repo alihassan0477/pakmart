@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pakmart/SellerCentral/bloc/ReceivedLeads/bloc/receive_leads_bloc.dart';
+import 'package:pakmart/SellerCentral/bloc/ReceivedLeads/bloc/receive_leads_state.dart';
 import 'package:pakmart/SellerCentral/utils/enums.dart';
 import 'package:pakmart/SellerCentral/utils/utlis.dart';
 import 'package:pakmart/SellerCentral/views/receive_leads/widgets/lead_details_bottom_sheet_widget.dart';
@@ -56,16 +57,23 @@ class _ReceiveLeadsScreenState extends State<ReceiveLeadsScreen> {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ListTile(
-                            onTap:
-                                () => {
-                                  Utlis.showButtomSheet(
+                            onTap: () async {
+                              final result =
+                                  await Utlis.showBottomSheetReturnValue(
                                     context,
                                     LeadDetailsWidget(lead: lead),
-                                  ),
-                                },
+                                  );
+
+                              if (result == true) {
+                                context.read<ReceiveLeadsBloc>().add(
+                                  FetchReceivedLeadsEvent(),
+                                );
+                              }
+                            },
                             tileColor: Colors.green[50],
                             title: Text(lead.title),
-                            subtitle: Text(lead.customerId),
+                            subtitle: Text(lead.rfqId ?? ''),
+                            trailing: Text(lead.status ?? ''),
                           ),
                         );
                       },
