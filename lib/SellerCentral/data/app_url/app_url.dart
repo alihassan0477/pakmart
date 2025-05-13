@@ -29,4 +29,8 @@ class AppUrl {
   static String updateRfqStatusUrl(String rfqId) {
     return "$baseApi/update-rfq-status/$rfqId";
   }
+
+  static String fetchUserAnalyticsUrl(String sellerId) {
+    return "$baseApi/rfq/status-counts/seller/$sellerId";
+  }
 }
