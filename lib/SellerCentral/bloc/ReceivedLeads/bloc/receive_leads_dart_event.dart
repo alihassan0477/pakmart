@@ -1,4 +1,4 @@
-part of 'receive_leads_bloc.dart';
+import 'package:equatable/equatable.dart';
 
 abstract class ReceiveLeadsEvent extends Equatable {
   @override

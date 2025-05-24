@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:pakmart/Model/RFQModel.dart';
-import 'package:pakmart/SellerCentral/bloc/ReceivedLeads/bloc/receive_leads_state.dart';
+import 'package:pakmart/SellerCentral/bloc/ReceivedLeads/bloc/receive_leads_dart_event.dart';
+import 'package:pakmart/SellerCentral/bloc/ReceivedLeads/bloc/receive_leads_dart_state.dart';
+
 import 'package:pakmart/SellerCentral/repository/received_leads.dart/receive_leads_repo.dart';
 import 'package:pakmart/SellerCentral/utils/enums.dart';
-
-part 'receive_leads_event.dart';
 
 class ReceiveLeadsBloc extends Bloc<ReceiveLeadsEvent, ReceiveLeadsState> {
   ReceiveLeadsRepository receiveLeadsRepository;

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pakmart/SellerCentral/bloc/ReceivedLeads/bloc/receive_leads_bloc.dart';
-import 'package:pakmart/SellerCentral/bloc/ReceivedLeads/bloc/receive_leads_state.dart';
+import 'package:pakmart/SellerCentral/bloc/ReceivedLeads/bloc/receive_leads_dart_bloc.dart';
+import 'package:pakmart/SellerCentral/bloc/ReceivedLeads/bloc/receive_leads_dart_event.dart';
+import 'package:pakmart/SellerCentral/bloc/ReceivedLeads/bloc/receive_leads_dart_state.dart';
+
 import 'package:pakmart/SellerCentral/config/components/status_button.dart';
 import 'package:pakmart/SellerCentral/utils/enums.dart';
 import 'package:pakmart/SellerCentral/utils/utlis.dart';

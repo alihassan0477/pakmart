@@ -3,8 +3,6 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pakmart/Model/RFQModel.dart';
-import 'package:pakmart/SellerCentral/bloc/ReceivedLeads/bloc/receive_leads_bloc.dart';
-import 'package:pakmart/SellerCentral/bloc/ReceivedLeads/bloc/receive_leads_state.dart';
 import 'package:pakmart/SellerCentral/config/components/status_button.dart';
 import 'package:pakmart/SellerCentral/views/receive_leads/widgets/status_button_widget.dart';
 
