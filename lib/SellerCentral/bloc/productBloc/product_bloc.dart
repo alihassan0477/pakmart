@@ -1,11 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:pakmart/Model/CategoryModel.dart';
+
 import 'package:pakmart/Model/ProductModel.dart';
 import 'package:pakmart/SellerCentral/bloc/productBloc/product_state.dart';
 import 'package:pakmart/SellerCentral/repository/product/product_repository.dart';
 import 'package:pakmart/SellerCentral/utils/enums.dart';
-import 'package:pakmart/screens/HomeScreen/widgets/categories.dart';
 import 'package:pakmart/service/session_manager/session_controller.dart';
 
 part 'product_event.dart';
