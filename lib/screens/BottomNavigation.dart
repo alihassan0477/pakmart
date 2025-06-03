@@ -64,10 +64,7 @@ class _NavigationExampleState extends State<CustomNavigationBar> {
             label: 'Search',
           ),
           if (isLogin) ...[
-            const NavigationDestination(
-              icon: Icon(Icons.chat),
-              label: 'Chat',
-            )
+            const NavigationDestination(icon: Icon(Icons.chat), label: 'Chat'),
           ],
           const NavigationDestination(
             icon: Icon(Icons.person_2_outlined),
@@ -75,19 +72,14 @@ class _NavigationExampleState extends State<CustomNavigationBar> {
           ),
         ],
       ),
-      body: <Widget>[
-        const HomeScreen(),
-        if (isLogin) ...[
-          RFQScreen(
-            isBackButtonEnable: false,
-          )
-        ],
-        const SearchScreen(),
-        if (isLogin) ...[
-          const ChatScreen(),
-        ],
-        const UserProfileScreen()
-      ][currentPageIndex],
+      body:
+          <Widget>[
+            const HomeScreen(),
+            if (isLogin) ...[RFQScreen(isBackButtonEnable: false)],
+            const SearchScreen(),
+            if (isLogin) ...[const ChatScreen()],
+            const UserProfileScreen(),
+          ][currentPageIndex],
     );
   }
 }

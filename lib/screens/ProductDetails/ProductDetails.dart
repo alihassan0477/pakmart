@@ -35,14 +35,10 @@ class ProductDetailsScreen extends StatelessWidget {
                 ),
                 child: const Text("Call"),
               ),
-              const SizedBox(
-                width: 10,
-              ),
+              const SizedBox(width: 10),
               ElevatedButton(
                 onPressed: () {
-                  context.navigateTo(RFQScreen(
-                    isBackButtonEnable: true,
-                  ));
+                  context.navigateTo(RFQScreen(isBackButtonEnable: true));
                 },
                 style: rectanuglarButton.copyWith(
                   backgroundColor: WidgetStateProperty.all(Colors.green),
@@ -50,20 +46,24 @@ class ProductDetailsScreen extends StatelessWidget {
                 ),
                 child: const Text("Get Best Price"),
               ),
-              const SizedBox(
-                width: 10,
-              ),
+              const SizedBox(width: 10),
               ElevatedButton(
                 onPressed: () {
-                  context.navigateTo(const IndividualChatScreen());
+                  context.navigateTo(
+                    IndividualChatScreen(
+                      receiverId: product.seller.id!,
+                      sellerName: product.seller.name,
+                    ),
+                  );
                 },
                 style: rectanuglarButton.copyWith(
                   backgroundColor: WidgetStateProperty.all(Colors.green),
                   foregroundColor: WidgetStateProperty.all(
-                      const Color.fromARGB(255, 100, 22, 22)),
+                    const Color.fromARGB(255, 100, 22, 22),
+                  ),
                 ),
                 child: const Text("chat"),
-              )
+              ),
             ],
           ),
         ),
@@ -72,15 +72,11 @@ class ProductDetailsScreen extends StatelessWidget {
         child: Stack(
           children: [
             Image(
-              image: NetworkImage(
-                product.images[0],
-              ),
+              image: NetworkImage(product.images[0]),
               height: 300,
               fit: BoxFit.cover,
             ),
-            ProductInformation(
-              product: product,
-            ),
+            ProductInformation(product: product),
           ],
         ),
       ),
@@ -103,52 +99,32 @@ class ProductInformation extends StatelessWidget {
         return Container(
           decoration: const BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(16),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black26,
-                blurRadius: 8.0,
-              ),
-            ],
+            borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+            boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 8.0)],
           ),
           child: ListView(
             controller: scrollController,
             padding: const EdgeInsets.all(16.0),
             children: [
-              Text(
-                product.name,
-                style: boldWith18px,
-              ),
+              Text(product.name, style: boldWith18px),
               const SizedBox(height: 8),
               Text(
                 "PKR ${product.price} / unit",
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey,
-                ),
+                style: const TextStyle(fontSize: 16, color: Colors.grey),
               ),
               const Divider(),
               const SizedBox(height: 8),
-              const Text(
-                "Description",
-                style: boldWith16px,
-              ),
+              const Text("Description", style: boldWith16px),
               const SizedBox(height: 4),
-              Text(
-                product.description,
-              ),
+              Text(product.description),
               const Divider(),
               const SizedBox(height: 8),
               const Text(
                 "Specifications",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 4),
+
               // Uncomment the Table if needed
               // Table(
               //   border: TableBorder.all(),
@@ -207,31 +183,22 @@ class ProductInformation extends StatelessWidget {
               //     ),
               //   ],
               // ),
-
               const Divider(),
 
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
 
-              SellerInfo(
-                seller: product.seller,
-              ),
+              SellerInfo(seller: product.seller),
 
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
 
               ListTile(
-                leading: const Text(
-                  "Reviews",
-                  style: boldWith18px,
-                ),
+                leading: const Text("Reviews", style: boldWith18px),
                 trailing: const Icon(Icons.arrow_forward),
-                onTap: () => context.navigateTo(ReviewsScreen(
-                  product_id: product.id!,
-                )),
-              )
+                onTap:
+                    () => context.navigateTo(
+                      ReviewsScreen(product_id: product.id!),
+                    ),
+              ),
             ],
           ),
         );
@@ -251,23 +218,16 @@ class SellerInfo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(
-            height: 100,
-            width: 100,
-            child: Icon(
-              Icons.person_2,
-              size: 50,
-            )),
-        const SizedBox(
-          width: 10,
+          height: 100,
+          width: 100,
+          child: Icon(Icons.person_2, size: 50),
         ),
+        const SizedBox(width: 10),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                seller.name,
-                style: lessdarkWith16px,
-              ),
+              Text(seller.name, style: lessdarkWith16px),
               Text(
                 seller.storeName,
                 overflow: TextOverflow.ellipsis,
@@ -280,11 +240,11 @@ class SellerInfo extends StatelessWidget {
                 initialRating: 4,
                 maxRating: 5,
               ),
-              const Icon(Icons.check_box)
+              const Icon(Icons.check_box),
             ],
           ),
         ),
-        IconButton(onPressed: () {}, icon: const Icon(Icons.call))
+        IconButton(onPressed: () {}, icon: const Icon(Icons.call)),
       ],
     );
   }

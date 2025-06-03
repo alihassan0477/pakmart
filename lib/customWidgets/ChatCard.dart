@@ -1,37 +1,50 @@
 import 'package:flutter/material.dart';
 
 class ChatCard extends StatelessWidget {
-  const ChatCard({super.key});
+  final String name;
+  final String lastMessage;
+  final String time;
+
+  const ChatCard({
+    super.key,
+    required this.name,
+    required this.lastMessage,
+    required this.time,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
         ListTile(
-          leading: CircleAvatar(
+          leading: const CircleAvatar(
             radius: 30,
+            backgroundColor: Colors.blueGrey,
+            child: Icon(Icons.person, color: Colors.white),
           ),
           title: Text(
-            "Ali Hassan",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            name,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           subtitle: Row(
             children: [
-              Icon(Icons.done_all),
-              SizedBox(
-                width: 5,
-              ),
-              Text(
-                "hi my name is ALi",
-                style: TextStyle(fontSize: 13),
+              const Icon(Icons.done_all, size: 16, color: Colors.grey),
+              const SizedBox(width: 5),
+              Expanded(
+                child: Text(
+                  lastMessage,
+                  style: const TextStyle(fontSize: 13),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ],
           ),
-          trailing: Text("18:04"),
+          trailing: Text(
+            time,
+            style: const TextStyle(fontSize: 12, color: Colors.grey),
+          ),
         ),
-        Divider(
-          thickness: 1,
-        )
+        const Divider(thickness: 1),
       ],
     );
   }

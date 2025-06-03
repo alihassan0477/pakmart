@@ -3,37 +3,44 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:pakmart/Model/message_model.dart';
 import 'package:pakmart/SellerCentral/data/app_url/app_url.dart';
+import 'package:pakmart/SellerCentral/repository/seller_chats/seller_chat_repo.dart';
 import 'package:pakmart/customWidgets/own_chat_card.dart';
 import 'package:pakmart/customWidgets/reply_card.dart';
 import 'package:pakmart/screens/Chats/repo/chat_repo.dart';
+import 'package:pakmart/service/session_manager/session_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
-class IndividualChatScreen extends StatefulWidget {
-  const IndividualChatScreen({
+class IndividualSellerChatScreen extends StatefulWidget {
+  const IndividualSellerChatScreen({
     super.key,
     required this.receiverId,
-    required this.sellerName,
+    required this.customerName,
   });
 
   final String receiverId;
-  final String sellerName;
+  final String customerName;
 
   @override
-  State<IndividualChatScreen> createState() => _IndividualChatScreenState();
+  State<IndividualSellerChatScreen> createState() =>
+      _IndividualSellerChatScreenState();
 }
 
-class _IndividualChatScreenState extends State<IndividualChatScreen> {
+class _IndividualSellerChatScreenState
+    extends State<IndividualSellerChatScreen> {
   final TextEditingController controller = TextEditingController();
   late IO.Socket socket;
-  String? userId;
+
   List<Message> chatmessages = [];
   final ScrollController scrollController = ScrollController();
+
+  final sellerId = SellerSessionController().seller_id;
 
   @override
   void initState() {
     super.initState();
-    initData();
+    fetchInitialMessages();
+    connectSocket();
   }
 
   @override
@@ -43,41 +50,6 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
     controller.dispose();
     scrollController.dispose();
     super.dispose();
-  }
-
-  Future<void> initData() async {
-    final prefs = await SharedPreferences.getInstance();
-    userId = prefs.getString("user_id");
-
-    if (userId == null || widget.receiverId.isEmpty) {
-      // handle invalid state here (e.g., navigate back or show error)
-      return;
-    }
-
-    await fetchMessages();
-    connectSocket();
-  }
-
-  Future<void> fetchMessages() async {
-    try {
-      final messages = await ChatRepo().fetchMessages(
-        user1: userId!,
-        user2: widget.receiverId,
-      );
-
-      setState(() {
-        chatmessages = messages;
-      });
-
-      // Scroll to bottom after loading messages
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (scrollController.hasClients) {
-          scrollController.jumpTo(scrollController.position.maxScrollExtent);
-        }
-      });
-    } catch (e) {
-      print('Error fetching messages: $e');
-    }
   }
 
   void connectSocket() {
@@ -93,8 +65,8 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
 
     socket.onConnect((_) {
       print('Socket connected');
-      if (userId != null) {
-        socket.emit("join", userId);
+      if (sellerId.isNotEmpty) {
+        socket.emit("join", sellerId);
       }
     });
 
@@ -120,6 +92,28 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
     });
   }
 
+  void fetchInitialMessages() async {
+    try {
+      final messages = await SellerChatRepo().fetchMessages(
+        sellerId,
+        widget.receiverId,
+      );
+
+      setState(() {
+        chatmessages = messages;
+      });
+
+      // Scroll to bottom after loading
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (scrollController.hasClients) {
+          scrollController.jumpTo(scrollController.position.maxScrollExtent);
+        }
+      });
+    } catch (e) {
+      debugPrint('Error fetching messages: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,12 +127,12 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
             children: [
               const Icon(Icons.arrow_back),
               const SizedBox(width: 5),
-              CircleAvatar(child: Text(widget.sellerName.substring(1, 4))),
+              CircleAvatar(child: Text(widget.customerName.substring(1, 4))),
             ],
           ),
         ),
         title: Text(
-          widget.sellerName,
+          widget.customerName,
           style: const TextStyle(
             fontSize: 19,
             fontWeight: FontWeight.bold,
@@ -157,7 +151,7 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
                 itemBuilder: (context, index) {
                   final message = chatmessages[index];
 
-                  return message.senderId == userId
+                  return message.senderId == sellerId
                       ? OwnMessageCard(
                         message: message.content,
                         time: message.timestamp.toString(),
@@ -196,8 +190,8 @@ class _IndividualChatScreenState extends State<IndividualChatScreen> {
                     IconButton(
                       onPressed: () {
                         final text = controller.text.trim();
-                        if (text.isNotEmpty && userId != null) {
-                          sendMessage(text, userId!, widget.receiverId);
+                        if (text.isNotEmpty && sellerId.isNotEmpty) {
+                          sendMessage(text, sellerId, widget.receiverId);
                         }
                       },
                       icon: const Icon(Icons.send, color: Colors.green),
